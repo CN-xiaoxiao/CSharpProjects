@@ -15,7 +15,7 @@ namespace LibraryManagerPro
         {
             InitializeComponent();
 
-
+            this.tssl_AdminName.Text = Program.objCurrentAdmin.AdminName;
         }
      
         private void btnAddBook_Click(object sender, EventArgs e)

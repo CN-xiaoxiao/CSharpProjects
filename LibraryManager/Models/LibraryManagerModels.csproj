@@ -7,8 +7,8 @@
     <ProjectGuid>{573D46EC-BBE7-4C4E-8279-79D4D50DF70F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Models</RootNamespace>
-    <AssemblyName>Models</AssemblyName>
+    <RootNamespace>LibraryManagerModels</RootNamespace>
+    <AssemblyName>LibraryManagerModels</AssemblyName>
     <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
