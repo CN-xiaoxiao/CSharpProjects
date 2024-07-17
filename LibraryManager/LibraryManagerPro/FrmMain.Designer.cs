@@ -387,7 +387,7 @@
             this.Name = "FrmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "[图书借阅管理系统]";
-
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmMain_FormClosing);
             this.spContainer.Panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.spContainer)).EndInit();
             this.spContainer.ResumeLayout(false);

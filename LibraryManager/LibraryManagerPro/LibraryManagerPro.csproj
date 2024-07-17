@@ -161,7 +161,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BLL\LibraryManagerBLL.csproj">
+    <ProjectReference Include="..\LibraryManagerBLL\LibraryManagerBLL.csproj">
       <Project>{90778894-8cd3-4efe-a56f-5dec538b2314}</Project>
       <Name>LibraryManagerBLL</Name>
     </ProjectReference>
@@ -169,7 +169,7 @@
       <Project>{3b1cfa06-99d0-485f-beeb-503756d7a90b}</Project>
       <Name>LibraryManagerCommon</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Models\LibraryManagerModels.csproj">
+    <ProjectReference Include="..\LibraryManagerModels\LibraryManagerModels.csproj">
       <Project>{573d46ec-bbe7-4c4e-8279-79d4d50df70f}</Project>
       <Name>LibraryManagerModels</Name>
     </ProjectReference>
