@@ -161,13 +161,13 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BLL\LibraryManagerBLL.csproj">
+    <ProjectReference Include="..\BLL\BLL.csproj">
       <Project>{90778894-8cd3-4efe-a56f-5dec538b2314}</Project>
-      <Name>LibraryManagerBLL</Name>
+      <Name>BLL</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Models\LibraryManagerModels.csproj">
+    <ProjectReference Include="..\Models\Models.csproj">
       <Project>{573d46ec-bbe7-4c4e-8279-79d4d50df70f}</Project>
-      <Name>LibraryManagerModels</Name>
+      <Name>Models</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

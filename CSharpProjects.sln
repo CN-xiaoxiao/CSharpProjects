@@ -7,13 +7,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibraryManagerPro", "Librar
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "LibraryManager", "LibraryManager", "{7F627968-AECE-4A08-BB6B-BCF47CC1270B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibraryManagerBLL", "LibraryManager\BLL\LibraryManagerBLL.csproj", "{90778894-8CD3-4EFE-A56F-5DEC538B2314}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BLL", "LibraryManager\BLL\BLL.csproj", "{90778894-8CD3-4EFE-A56F-5DEC538B2314}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibraryManagerDAL", "LibraryManager\DAL\LibraryManagerDAL.csproj", "{1959CD89-0351-4C66-84DC-A675E1E5F817}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "LibraryManager\DAL\DAL.csproj", "{1959CD89-0351-4C66-84DC-A675E1E5F817}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibraryManagerModels", "LibraryManager\Models\LibraryManagerModels.csproj", "{573D46EC-BBE7-4C4E-8279-79D4D50DF70F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Models", "LibraryManager\Models\Models.csproj", "{573D46EC-BBE7-4C4E-8279-79D4D50DF70F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibraryManagerCommon", "LibraryManager\LibraryManagerCommon\LibraryManagerCommon.csproj", "{3B1CFA06-99D0-485F-BEEB-503756D7A90B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "LibraryManager\LibraryManagerCommon\Common.csproj", "{3B1CFA06-99D0-485F-BEEB-503756D7A90B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DBUtility", "LibraryManager\LibraryManagerDBUtility\DBUtility.csproj", "{3E8AB2F0-3158-4F9B-B785-9A18766EB8EA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,6 +43,10 @@ Global
 		{3B1CFA06-99D0-485F-BEEB-503756D7A90B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3B1CFA06-99D0-485F-BEEB-503756D7A90B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3B1CFA06-99D0-485F-BEEB-503756D7A90B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3E8AB2F0-3158-4F9B-B785-9A18766EB8EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3E8AB2F0-3158-4F9B-B785-9A18766EB8EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3E8AB2F0-3158-4F9B-B785-9A18766EB8EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3E8AB2F0-3158-4F9B-B785-9A18766EB8EA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -51,6 +57,7 @@ Global
 		{1959CD89-0351-4C66-84DC-A675E1E5F817} = {7F627968-AECE-4A08-BB6B-BCF47CC1270B}
 		{573D46EC-BBE7-4C4E-8279-79D4D50DF70F} = {7F627968-AECE-4A08-BB6B-BCF47CC1270B}
 		{3B1CFA06-99D0-485F-BEEB-503756D7A90B} = {7F627968-AECE-4A08-BB6B-BCF47CC1270B}
+		{3E8AB2F0-3158-4F9B-B785-9A18766EB8EA} = {7F627968-AECE-4A08-BB6B-BCF47CC1270B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D93D9A02-9F8D-4977-B68E-85FFC72E72D0}

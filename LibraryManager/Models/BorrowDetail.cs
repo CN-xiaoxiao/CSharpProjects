@@ -4,9 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BLL
+namespace Models
 {
-    public class Class1
+    /// <summary>
+    /// 借阅详细表
+    /// </summary>
+    [Serializable]
+    public class BorrowDetail
     {
     }
 }
