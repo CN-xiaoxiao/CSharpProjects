@@ -352,7 +352,7 @@
             this.dgvBookList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvBookList.Size = new System.Drawing.Size(970, 351);
             this.dgvBookList.TabIndex = 20;
-
+            this.dgvBookList.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dgvBookList_RowPostPaint);
             // 
             // BarCode
             // 

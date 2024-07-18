@@ -7,7 +7,9 @@ using System.Threading.Tasks;
 namespace LibraryManagerModels
 {
     [Serializable]
-    public class Catetgory
+    public class Category
     {
+        public int CategoryId { get; set; }
+        public string CategoryName { get; set; }
     }
 }

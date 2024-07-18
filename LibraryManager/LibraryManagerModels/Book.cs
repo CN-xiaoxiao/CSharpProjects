@@ -27,5 +27,6 @@ namespace LibraryManagerModels
         public DateTime RegTime { get; set; }
 
         // 扩展属性
+        public string PublisherName { get; set; }
     }
 }
