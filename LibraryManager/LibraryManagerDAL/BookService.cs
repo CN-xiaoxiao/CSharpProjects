@@ -111,6 +111,70 @@ namespace LibraryManagerDAL
 
         #endregion
 
+        #region 图书上架
 
+        /// <summary>
+        /// 根据图书条码查询图书对象
+        /// </summary>
+        /// <param name="barCode">图书条码</param>
+        /// <returns></returns>
+        public Book GetBookByBarCode(string barCode)
+        {
+            string sql = "select BookId, BarCode,BookName,Author,Books.PublisherId,PublishDate,BookCategory,UnitPrice,BookImage,BookCount,Remainder,BookPosition,RegTime,PublisherName,CategoryName from Books";
+            sql += " inner join Publishers on Publishers.PublisherId=Books.PublisherId";
+            sql += " inner join Categories on Books.BookCategory=Categories.CategoryId";
+            sql += " where BarCode=@BarCode";
+
+            SqlParameter[] param = new SqlParameter[] {
+                new SqlParameter("@BarCode", barCode)
+            };
+            SqlDataReader objReader = SQLHelper.GetReader(sql, param);
+            Book objBook = null;
+
+            if (objReader.Read())
+            {
+                objBook = new Book()
+                {
+                    BookId = Convert.ToInt32(objReader["BookId"].ToString()),
+                    BarCode = objReader["BarCode"].ToString(),
+                    BookName = objReader["BookName"].ToString(),
+                    Author = objReader["Author"].ToString(),
+                    PublisherId = Convert.ToInt32(objReader["PublisherId"].ToString()),
+                    PublishDate = Convert.ToDateTime(objReader["PublishDate"].ToString()),
+                    BookCategory = Convert.ToInt32(objReader["BookCategory"].ToString()),
+                    UnitPrice = Convert.ToDouble(objReader["UnitPrice"].ToString()),
+                    BookImage = objReader["BookImage"] is DBNull ? "" : objReader["BookImage"].ToString(),
+                    BookCount = Convert.ToInt32(objReader["BookCount"].ToString()),
+                    Remainder = Convert.ToInt32(objReader["Remainder"].ToString()),
+                    BookPosition = objReader["BookPosition"].ToString(),
+                    RegTime = Convert.ToDateTime(objReader["RegTime"].ToString()),
+                    PublisherName = objReader["PublisherName"].ToString(),
+                    CategoryName = objReader["CategoryName"].ToString()
+
+                };
+            }
+            objReader.Close();
+
+            return objBook;
+        }
+
+        /// <summary>
+        /// 更新图书收藏总数
+        /// </summary>
+        /// <param name="barCode">图书条码</param>
+        /// <param name="bookCount">新增总数</param>
+        /// <returns></returns>
+        public int AddBookCount(string barCode, int bookCount)
+        {
+            string sql = "update Books set BookCount=BookCount+@BookCount where BarCode=@BarCode";
+            SqlParameter[] param = new SqlParameter[] {
+                new SqlParameter("@BookCount", bookCount),
+                new SqlParameter("@BarCode", barCode)
+            };
+
+            return SQLHelper.Update(sql, param);
+        }
+
+        #endregion
     }
 }

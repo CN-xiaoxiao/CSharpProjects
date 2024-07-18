@@ -55,7 +55,26 @@ namespace LibraryManagerBLL
         {
             return objBookService.AddBook(objBook);
         }
+
+        /// <summary>
+        /// 根据图书条码查询图书对象
+        /// </summary>
+        /// <param name="barCode"></param>
+        /// <returns></returns>
+        public Book GetBookByBarCode(string barCode)
+        {
+            return objBookService.GetBookByBarCode(barCode);
+        }
+
+        /// <summary>
+        /// 更新图书收藏总数
+        /// </summary>
+        /// <param name="barCode"></param>
+        /// <param name="bookCount"></param>
+        /// <returns></returns>
+        public int AddBookCount(string barCode, int bookCount)
+        {
+            return objBookService.AddBookCount(barCode, bookCount);
+        }
     }
-
-
 }
