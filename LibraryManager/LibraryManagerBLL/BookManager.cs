@@ -98,5 +98,16 @@ namespace LibraryManagerBLL
         {
             return objBookService.EditBook(objBook);
         }
+
+        /// <summary>
+        /// 根据图书编号删除图书信息
+        /// </summary>
+        /// <param name="bookId"></param>
+        /// <returns></returns>
+        /// <exception cref="Exception"></exception>
+        public int DeleteBook(string bookId)
+        {
+            return objBookService.DeleteBook(bookId);
+        }
     }
 }

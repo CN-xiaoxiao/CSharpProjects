@@ -265,6 +265,40 @@ namespace LibraryManagerDAL
             return SQLHelper.UpdateByProcedure("usp_EditBook", param);
         }
 
+        /// <summary>
+        /// 根据图书编号删除图书信息
+        /// </summary>
+        /// <param name="bookId"></param>
+        /// <returns></returns>
+        /// <exception cref="Exception"></exception>
+        public int DeleteBook(string bookId)
+        {
+            string sql = "delete from Books where BookId=@BookId";
+            SqlParameter[] param = new SqlParameter[] {
+                new SqlParameter("@BookId", bookId)
+            };
+
+            try
+            {
+                return SQLHelper.Update(sql, param);
+            }
+            catch (SqlException ex)
+            {
+                if (ex.Number == 547)
+                {
+                    throw new Exception("当前图书已经被其他数据表引用，不能直接删除！");
+                }
+                else
+                {
+                    throw new Exception("删除图书出现异常：" + ex.Message);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         #endregion
 
     }

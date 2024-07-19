@@ -219,5 +219,34 @@ namespace LibraryManagerPro
                 MessageBox.Show(ex.Message, "错误提示");
             }
         }
+
+        private void btnDel_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("确认要删除【" + this.txt_BookName.Text + "】这本书吗？", "删除询问", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            if (result == DialogResult.Cancel)
+            {
+                return;
+            }
+
+            this.dgvBookList.SelectionChanged -= new EventHandler(this.dgvBookList_SelectionChanged);
+
+            try
+            {
+                if (objBookManager.DeleteBook(lbl_BookId.Text) == 1)
+                {
+                    Book deleteBook = (from b in this.bookList where b.BookId.Equals(Convert.ToInt32(this.lbl_BookId.Text)) select b).First<Book>();
+                    this.bookList.Remove(deleteBook);
+                    this.dgvBookList.DataSource = null;
+                    this.dgvBookList.DataSource = this.bookList;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "删除提示");
+            }
+
+            this.dgvBookList.SelectionChanged += new EventHandler(this.dgvBookList_SelectionChanged);
+            this.dgvBookList_SelectionChanged(null, null);
+        }
     }
 }

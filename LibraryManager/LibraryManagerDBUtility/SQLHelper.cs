@@ -132,7 +132,7 @@ namespace LibraryManagerDBUtility
                 string errorInfo = "调用public static int Update(string sql, SqlParameter[] param)方法时发生错误：" + ex.Message;
                 WriteLog(errorInfo);
 
-                throw new Exception(errorInfo);
+                throw ex;
             }
             finally
             {
