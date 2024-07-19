@@ -150,7 +150,6 @@ namespace LibraryManagerDAL
                     RegTime = Convert.ToDateTime(objReader["RegTime"].ToString()),
                     PublisherName = objReader["PublisherName"].ToString(),
                     CategoryName = objReader["CategoryName"].ToString()
-
                 };
             }
             objReader.Close();
@@ -176,5 +175,97 @@ namespace LibraryManagerDAL
         }
 
         #endregion
+
+        #region 图书维护
+
+        /// <summary>
+        /// 根据组合条件查询图书信息
+        /// </summary>
+        /// <param name="categoryId">图书分类编号</param>
+        /// <param name="barCode">图书条码</param>
+        /// <param name="bookName">图书名称</param>
+        /// <returns>图书对象集合</returns>
+        public List<Book> GetBooks(int categoryId, string barCode, string bookName)
+        {
+            List<SqlParameter> paramList = new List<SqlParameter>();
+            string sql = "select BookId, BarCode,BookName,Author,Books.PublisherId,PublishDate,BookCategory,UnitPrice,BookImage,BookCount,Remainder,BookPosition,RegTime,PublisherName,CategoryName from Books";
+            sql += " inner join Publishers on Publishers.PublisherId=Books.PublisherId";
+            sql += " inner join Categories on Books.BookCategory=Categories.CategoryId";
+            sql += " where 1=1";
+
+            if (barCode != null && barCode.Length > 0)
+            {
+                sql += " and BarCode=@BarCode";
+                paramList.Add(new SqlParameter("@BarCode", barCode));
+            }
+            else
+            {
+                if (categoryId != -1)
+                {
+                    sql += " and CategoryId=@CategoryId";
+                    paramList.Add(new SqlParameter("@CategoryId", categoryId));
+                }
+
+                if (bookName != null && bookName.Length > 0)
+                {
+                    sql += " and BookName like @BookName+'%'";
+                    paramList.Add(new SqlParameter("@BookName", bookName));
+                }
+            }
+
+            SqlDataReader objReader = SQLHelper.GetReader(sql, paramList.ToArray());
+            List<Book> bookList = new List<Book>();
+
+            while (objReader.Read())
+            {
+                bookList.Add(new Book()
+                {
+                    BookId = Convert.ToInt32(objReader["BookId"].ToString()),
+                    BarCode = objReader["BarCode"].ToString(),
+                    BookName = objReader["BookName"].ToString(),
+                    Author = objReader["Author"].ToString(),
+                    PublisherId = Convert.ToInt32(objReader["PublisherId"].ToString()),
+                    PublishDate = Convert.ToDateTime(objReader["PublishDate"].ToString()),
+                    BookCategory = Convert.ToInt32(objReader["BookCategory"].ToString()),
+                    UnitPrice = Convert.ToDouble(objReader["UnitPrice"].ToString()),
+                    BookImage = objReader["BookImage"] is DBNull ? "" : objReader["BookImage"].ToString(),
+                    BookCount = Convert.ToInt32(objReader["BookCount"].ToString()),
+                    Remainder = Convert.ToInt32(objReader["Remainder"].ToString()),
+                    BookPosition = objReader["BookPosition"].ToString(),
+                    RegTime = Convert.ToDateTime(objReader["RegTime"].ToString()),
+                    PublisherName = objReader["PublisherName"].ToString(),
+                    CategoryName = objReader["CategoryName"].ToString()
+                });
+            }
+            objReader.Close();
+
+            return bookList;
+        }
+
+        /// <summary>
+        /// 修改图书对象
+        /// </summary>
+        /// <param name="objBook"></param>
+        /// <returns></returns>
+        public int EditBook(Book objBook)
+        {
+            SqlParameter[] param = new SqlParameter[] {
+                new SqlParameter("@BookId", objBook.BookId),
+                new SqlParameter("@BookName", objBook.BookName),
+                new SqlParameter("@Author", objBook.Author),
+                new SqlParameter("@PublisherId", objBook.PublisherId),
+                new SqlParameter("@PublishDate", objBook.PublishDate),
+                new SqlParameter("@BookCategory", objBook.BookCategory),
+                new SqlParameter("@UnitPrice", objBook.UnitPrice),
+                new SqlParameter("@BookImage", objBook.BookImage),
+                new SqlParameter("@BookCount", objBook.BookCount),
+                new SqlParameter("@BookPosition", objBook.BookPosition)
+            };
+
+            return SQLHelper.UpdateByProcedure("usp_EditBook", param);
+        }
+
+        #endregion
+
     }
 }
