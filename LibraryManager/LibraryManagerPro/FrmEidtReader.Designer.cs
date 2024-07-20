@@ -65,7 +65,7 @@
             this.btnSave.Text = "提交修改";
             this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSave.UseVisualStyleBackColor = true;
-
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // btnCloseVideo
             // 
@@ -75,7 +75,8 @@
             this.btnCloseVideo.TabIndex = 56;
             this.btnCloseVideo.Text = "关闭摄像头";
             this.btnCloseVideo.UseVisualStyleBackColor = true;
- 
+            this.btnCloseVideo.Click += new System.EventHandler(this.btnCloseVideo_Click);
+            // 
             // pbReaderPhoto
             // 
             this.pbReaderPhoto.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -94,7 +95,7 @@
             this.btnTake.TabIndex = 55;
             this.btnTake.Text = "开始拍照";
             this.btnTake.UseVisualStyleBackColor = true;
-
+            this.btnTake.Click += new System.EventHandler(this.btnTake_Click);
             // 
             // pbReaderVideo
             // 
@@ -114,7 +115,7 @@
             this.btnStartVideo.TabIndex = 53;
             this.btnStartVideo.Text = "启动摄像头";
             this.btnStartVideo.UseVisualStyleBackColor = true;
-
+            this.btnStartVideo.Click += new System.EventHandler(this.btnStartVideo_Click);
             // 
             // cboReaderRole
             // 

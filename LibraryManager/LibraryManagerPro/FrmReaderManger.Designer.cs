@@ -92,6 +92,8 @@
             this.StatusDesc = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.ReaderAddress = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btnQueryReader = new System.Windows.Forms.Button();
+            this.txtIDCard = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pbReaderImg)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -129,7 +131,6 @@
             this.txt_ReadingCard.Name = "txt_ReadingCard";
             this.txt_ReadingCard.Size = new System.Drawing.Size(126, 21);
             this.txt_ReadingCard.TabIndex = 0;
-
             // 
             // txt_IDCard
             // 
@@ -150,7 +151,7 @@
             this.btnQuery.Text = "提交查询  ";
             this.btnQuery.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnQuery.UseVisualStyleBackColor = true;
-
+            this.btnQuery.Click += new System.EventHandler(this.btnQuery_Click);
             // 
             // lblPhone
             // 
@@ -309,6 +310,7 @@
             this.btnEnable.Text = "挂失借阅证 ";
             this.btnEnable.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnEnable.UseVisualStyleBackColor = true;
+            this.btnEnable.Click += new System.EventHandler(this.btnEnable_Click);
             // 
             // label14
             // 
@@ -404,7 +406,7 @@
             this.btnEdit.Text = "修改信息 ";
             this.btnEdit.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnEdit.UseVisualStyleBackColor = true;
-
+            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
             // 
             // lblGender
             // 
@@ -420,6 +422,8 @@
             // 
             this.tabPage2.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.tabPage2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tabPage2.Controls.Add(this.txtIDCard);
+            this.tabPage2.Controls.Add(this.label5);
             this.tabPage2.Controls.Add(this.btnAdd);
             this.tabPage2.Controls.Add(this.btnCloseVideo);
             this.tabPage2.Controls.Add(this.pbReaderPhoto);
@@ -460,6 +464,7 @@
             this.btnAdd.Text = "确认添加";
             this.btnAdd.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // btnCloseVideo
             // 
@@ -469,6 +474,7 @@
             this.btnCloseVideo.TabIndex = 35;
             this.btnCloseVideo.Text = "关闭摄像头";
             this.btnCloseVideo.UseVisualStyleBackColor = true;
+            this.btnCloseVideo.Click += new System.EventHandler(this.btnCloseVideo_Click);
             // 
             // pbReaderPhoto
             // 
@@ -488,6 +494,7 @@
             this.btnTake.TabIndex = 34;
             this.btnTake.Text = "开始拍照";
             this.btnTake.UseVisualStyleBackColor = true;
+            this.btnTake.Click += new System.EventHandler(this.btnTake_Click);
             // 
             // pbReaderVideo
             // 
@@ -507,6 +514,7 @@
             this.btnStartVideo.TabIndex = 33;
             this.btnStartVideo.Text = "启动摄像头";
             this.btnStartVideo.UseVisualStyleBackColor = true;
+            this.btnStartVideo.Click += new System.EventHandler(this.btnStartVideo_Click);
             // 
             // cboReaderRole
             // 
@@ -560,7 +568,7 @@
             // txtPhone
             // 
             this.txtPhone.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtPhone.Location = new System.Drawing.Point(808, 125);
+            this.txtPhone.Location = new System.Drawing.Point(808, 169);
             this.txtPhone.Name = "txtPhone";
             this.txtPhone.Size = new System.Drawing.Size(142, 21);
             this.txtPhone.TabIndex = 22;
@@ -570,13 +578,13 @@
             this.txtAddress.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtAddress.Location = new System.Drawing.Point(572, 171);
             this.txtAddress.Name = "txtAddress";
-            this.txtAddress.Size = new System.Drawing.Size(378, 21);
+            this.txtAddress.Size = new System.Drawing.Size(149, 21);
             this.txtAddress.TabIndex = 23;
             // 
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(737, 129);
+            this.label18.Location = new System.Drawing.Point(737, 173);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(65, 12);
             this.label18.TabIndex = 13;
@@ -602,7 +610,7 @@
             // txtPostcode
             // 
             this.txtPostcode.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtPostcode.Location = new System.Drawing.Point(573, 125);
+            this.txtPostcode.Location = new System.Drawing.Point(808, 130);
             this.txtPostcode.Name = "txtPostcode";
             this.txtPostcode.Size = new System.Drawing.Size(142, 21);
             this.txtPostcode.TabIndex = 21;
@@ -610,7 +618,7 @@
             // label20
             // 
             this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(502, 129);
+            this.label20.Location = new System.Drawing.Point(737, 134);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(65, 12);
             this.label20.TabIndex = 15;
@@ -662,6 +670,7 @@
             this.StatusDesc,
             this.ReaderAddress});
             this.lvReader.GridLines = true;
+            this.lvReader.HideSelection = false;
             this.lvReader.Location = new System.Drawing.Point(16, 314);
             this.lvReader.Name = "lvReader";
             this.lvReader.Size = new System.Drawing.Size(975, 348);
@@ -720,7 +729,24 @@
             this.btnQueryReader.Text = "按照角色查询 ";
             this.btnQueryReader.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnQueryReader.UseVisualStyleBackColor = true;
-
+            this.btnQueryReader.Click += new System.EventHandler(this.btnQueryReader_Click);
+            // 
+            // txtIDCard
+            // 
+            this.txtIDCard.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtIDCard.Location = new System.Drawing.Point(572, 130);
+            this.txtIDCard.Name = "txtIDCard";
+            this.txtIDCard.Size = new System.Drawing.Size(142, 21);
+            this.txtIDCard.TabIndex = 37;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(501, 134);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(65, 12);
+            this.label5.TabIndex = 36;
+            this.label5.Text = "身份证号：";
             // 
             // FrmReaderManger
             // 
@@ -816,5 +842,7 @@
         private System.Windows.Forms.ColumnHeader ReaderId;
         private System.Windows.Forms.Button btnEdit;
         private System.Windows.Forms.Label lblGender;
+        private System.Windows.Forms.TextBox txtIDCard;
+        private System.Windows.Forms.Label label5;
     }
 }
