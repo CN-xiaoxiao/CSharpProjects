@@ -295,6 +295,7 @@
             this.btnCloseVideo.TabIndex = 49;
             this.btnCloseVideo.Text = "关闭摄像头";
             this.btnCloseVideo.UseVisualStyleBackColor = true;
+            this.btnCloseVideo.Click += new System.EventHandler(this.btnCloseVideo_Click);
             // 
             // btnChoseImage
             // 
@@ -304,6 +305,7 @@
             this.btnChoseImage.TabIndex = 45;
             this.btnChoseImage.Text = "选择图片";
             this.btnChoseImage.UseVisualStyleBackColor = true;
+            this.btnChoseImage.Click += new System.EventHandler(this.btnChoseImage_Click);
             // 
             // btnTake
             // 
@@ -313,6 +315,7 @@
             this.btnTake.TabIndex = 43;
             this.btnTake.Text = "开始拍照";
             this.btnTake.UseVisualStyleBackColor = true;
+            this.btnTake.Click += new System.EventHandler(this.btnTake_Click);
             // 
             // btnStartVideo
             // 
@@ -322,6 +325,7 @@
             this.btnStartVideo.TabIndex = 42;
             this.btnStartVideo.Text = "启动摄像头";
             this.btnStartVideo.UseVisualStyleBackColor = true;
+            this.btnStartVideo.Click += new System.EventHandler(this.btnStartVideo_Click);
             // 
             // gbBook
             // 

@@ -69,7 +69,7 @@
             this.txtReadingCard.Name = "txtReadingCard";
             this.txtReadingCard.Size = new System.Drawing.Size(142, 23);
             this.txtReadingCard.TabIndex = 0;
-  
+            this.txtReadingCard.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtReadingCard_KeyDown);
             // 
             // label2
             // 
@@ -287,7 +287,8 @@
             this.txtBarCode.Name = "txtBarCode";
             this.txtBarCode.Size = new System.Drawing.Size(249, 35);
             this.txtBarCode.TabIndex = 1;
-
+            this.txtBarCode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBarCode_KeyDown);
+            // 
             // label12
             // 
             this.label12.AutoSize = true;
@@ -309,7 +310,7 @@
             this.btnSave.Text = "保存借书信息 ";
             this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSave.UseVisualStyleBackColor = true;
-
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // btnClose
             // 
@@ -345,6 +346,7 @@
             this.btnDel.Text = "删  除";
             this.btnDel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnDel.UseVisualStyleBackColor = true;
+            this.btnDel.Click += new System.EventHandler(this.btnDel_Click);
             // 
             // FrmBorrowBook
             // 

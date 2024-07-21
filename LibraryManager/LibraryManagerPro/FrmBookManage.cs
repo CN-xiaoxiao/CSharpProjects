@@ -248,5 +248,72 @@ namespace LibraryManagerPro
             this.dgvBookList.SelectionChanged += new EventHandler(this.dgvBookList_SelectionChanged);
             this.dgvBookList_SelectionChanged(null, null);
         }
+
+        //启动摄像头
+        private void btnStartVideo_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // 创建摄像头操作类
+                this.objVideo = new Video(this.pbImage.Handle, this.pbImage.Left, this.pbImage.Top, this.pbImage.Width, (short)this.pbImage.Height);
+                // 打开摄像头
+                objVideo.OpenVideo();
+                // 禁用打开摄像头按钮
+                this.btnStartVideo.Enabled = false;
+                this.btnTake.Enabled = true;
+                this.btnCloseVideo.Enabled = true;
+
+                this.btnCloseVideo.BackColor = Color.Red;
+                this.btnTake.BackColor = Color.YellowGreen;
+                this.btnTake.ForeColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("摄像头启动失败: " + ex.Message, "错误信息");
+            }
+        }
+        private void btnCloseVideo_Click(object sender, EventArgs e)
+        {
+            this.objVideo.CloseVideo();
+            this.btnCloseVideo.Enabled = false;
+            this.btnCloseVideo.BackColor = default;
+            this.btnTake.Enabled = false;
+            this.btnTake.BackColor = default;
+            this.btnStartVideo.Enabled = true;
+        }
+        //开始拍照
+        private void btnTake_Click(object sender, EventArgs e)
+        {
+            this.pbCurrentImage.Image = objVideo.CatchVideo();
+        }
+
+        //选择图片
+        private void btnChoseImage_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog objOpenFile = new OpenFileDialog(); // 创建一个文件选择对象
+            DialogResult result = objOpenFile.ShowDialog();
+
+            if (result == DialogResult.OK) // 如果选择了文件
+            {
+                // 判断是否是图片格式
+                Image image = isImageFile(objOpenFile.FileName);
+                if (image != null)
+                {
+                    this.pbCurrentImage.Image = image; // 给图片展示对象赋值
+                }
+            }
+        }
+        // 判断是否是图片文件
+        private Image isImageFile(string fileName)
+        {
+            try
+            {
+                return Image.FromFile(fileName);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
     }
 }

@@ -30,6 +30,8 @@ namespace LibraryManagerModels
         // 扩展属性
         public string RoleName { get; set; }
         public string StatusDesc { get; set; }
+        public int AllowDay { get; set; } // 当前角色允许借书天数
+        public int AllowCounts { get; set; } // 当前角色允许借书总数
     }
 }
  

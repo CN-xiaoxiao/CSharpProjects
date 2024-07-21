@@ -93,7 +93,7 @@ namespace LibraryManagerDAL
 
         private Reader GetReaderBySQL(string whereSQL, SqlParameter[] param)
         {
-            string sql = "select ReaderId, ReadingCard,ReaderName,Gender,IDCard,ReaderAddress,PostCode,PhoneNumber,Readers.RoleId,RoleName,ReaderImage,StatusId from Readers";
+            string sql = "select ReaderId, ReadingCard,ReaderName,Gender,IDCard,ReaderAddress,PostCode,PhoneNumber,Readers.RoleId,RoleName,ReaderImage,StatusId,AllowDay,AllowCounts from Readers";
             sql += " inner join ReaderRoles on ReaderRoles.RoleId=Readers.RoleId ";
             sql += whereSQL;
 
@@ -114,7 +114,9 @@ namespace LibraryManagerDAL
                     PhoneNumber = objReader["PhoneNumber"].ToString(),
                     ReaderAddress = objReader["ReaderAddress"].ToString(),
                     PostCode = objReader["PostCode"].ToString(),
-                    Gender = objReader["Gender"].ToString()
+                    Gender = objReader["Gender"].ToString(),
+                    AllowDay = Convert.ToInt32(objReader["AllowDay"]),
+                    AllowCounts = Convert.ToInt32(objReader["AllowCounts"])
                 };
             }
             objReader.Close();
