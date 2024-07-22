@@ -65,5 +65,57 @@ namespace LibraryManagerDAL
 
             return SQLHelper.UpdateByTran(mainSql, mainParam, detailSql.ToString(), detailParam);
         }
+
+        /// <summary>
+        /// 根据借阅证号查询读者借书信息列表
+        /// </summary>
+        /// <param name="readingCard"></param>
+        /// <returns></returns>
+        public List<BorrowDetail> GetBorrowDetailByReadingCard(string readingCard)
+        {
+            SqlParameter[] param = new SqlParameter[]
+            {
+                new SqlParameter("ReadingCard", readingCard)
+            };
+            SqlDataReader objReader = SQLHelper.GetReaderByProcedure("usp_QueryBookByReadingCard", param);
+            List<BorrowDetail> detailList = new List<BorrowDetail>();
+
+            while (objReader.Read())
+            {
+                detailList.Add(new BorrowDetail()
+                {
+                    ReadingCard = objReader["ReadingCard"].ToString(),
+                    BorrowDetailId = Convert.ToInt32(objReader["BorrowDetailId"]),
+                    BookId = Convert.ToInt32(objReader["BookId"]),
+                    BorrowId = objReader["BorrowId"].ToString(),
+                    BookName = objReader["BookName"].ToString(),
+                    BarCode = objReader["BarCode"].ToString(),
+                    BorrowCount = Convert.ToInt32(objReader["BorrowCount"]),
+                    ReturnCount = Convert.ToInt32(objReader["ReturnCount"]),
+                    NonReturnCount = Convert.ToInt32(objReader["NonReturnCount"]),
+                    BorrowDate = Convert.ToDateTime(objReader["BorrowDate"]),
+                    Expire = Convert.ToDateTime(objReader["Expire"]),
+                    StatusDesc = objReader["StatusDesc"].ToString()
+                });
+            }
+            objReader.Close();
+            return detailList;
+        }
+
+        public bool ReturnBook(List<ReturnBook> bookList)
+        {
+            List<SqlParameter[]> paramArray = new List<SqlParameter[]>();
+            foreach (ReturnBook item in bookList)
+            {
+                paramArray.Add(new SqlParameter[]
+                {
+                    new SqlParameter("@BorrowDetailId", item.BorrowDetailId),
+                    new SqlParameter("@ReturnCount", item.ReturnCount),
+                    new SqlParameter("@AdminName_R", item.AdminName_R)
+                });
+            }
+
+            return SQLHelper.UpdateByTran("usp_ReturnBook", paramArray);
+        }
     }
 }

@@ -20,7 +20,7 @@ namespace LibraryManagerPro
         private BorrowManager objBorrowManager = new BorrowManager();
         private BookManager objBookManager = new BookManager();
 
-        private Reader objCurrentRearer = null;
+        private Reader objCurrentReader = null;
         private List<BorrowDetail> borrowsDetailList = new List<BorrowDetail>();
 
         public FrmBorrowBook()
@@ -43,22 +43,22 @@ namespace LibraryManagerPro
         {
             if (this.txtReadingCard.Text.Trim().Length != 0 && e.KeyCode == Keys.Enter)
             {
-                this.objCurrentRearer = this.objReaderManager.GetReaderByReadingCard(this.txtReadingCard.Text.Trim());
-                if (objCurrentRearer != null)
+                this.objCurrentReader = this.objReaderManager.GetReaderByReadingCard(this.txtReadingCard.Text.Trim());
+                if (objCurrentReader != null)
                 {
-                    if (objCurrentRearer.StatusId == 1)
+                    if (objCurrentReader.StatusId == 1)
                     {
                         // 显示读者信息
-                        this.lblReaderName.Text = objCurrentRearer.ReaderName;
-                        this.lblRoleName.Text = objCurrentRearer.RoleName;
-                        this.lblAllowCounts.Text = objCurrentRearer.AllowCounts.ToString();
+                        this.lblReaderName.Text = objCurrentReader.ReaderName;
+                        this.lblRoleName.Text = objCurrentReader.RoleName;
+                        this.lblAllowCounts.Text = objCurrentReader.AllowCounts.ToString();
                         // 显示照片
-                        this.pbReaderImage.Image = objCurrentRearer.ReaderImage != "" ? (Image)new SerializeObjectToString().DeserializeObject(objCurrentRearer.ReaderImage) : null;
+                        this.pbReaderImage.Image = objCurrentReader.ReaderImage != "" ? (Image)new SerializeObjectToString().DeserializeObject(objCurrentReader.ReaderImage) : null;
                         // 显示已借图书总数和剩余可解图书总数
                         int borrowCount = objBorrowManager.GetBorrowCount(this.txtReadingCard.Text.Trim());
                         this.lblBorrowCount.Text = borrowCount.ToString();
-                        this.lbl_Remainder.Text = (objCurrentRearer.AllowCounts - borrowCount).ToString();
-                        if (objCurrentRearer.AllowCounts > borrowCount)
+                        this.lbl_Remainder.Text = (objCurrentReader.AllowCounts - borrowCount).ToString();
+                        if (objCurrentReader.AllowCounts > borrowCount)
                         {
                             // 开启图书条码扫描文本框
                             this.txtBarCode.Enabled = true;
@@ -69,7 +69,7 @@ namespace LibraryManagerPro
                             MessageBox.Show("当前读者借书总数已经达到上限！", "借书提示");
                         }
                     }
-                    else if (objCurrentRearer.StatusId == 0)
+                    else if (objCurrentReader.StatusId == 0)
                     {
                         MessageBox.Show("当前借阅证已经被挂失，不能继续借书！", "结束提示");
                     }
@@ -104,7 +104,7 @@ namespace LibraryManagerPro
                             BarCode = objBook.BarCode,
                             BookId = objBook.BookId,
                             BookName = objBook.BookName,
-                            Expire = DateTime.Now.AddDays(objCurrentRearer.AllowDay),
+                            Expire = DateTime.Now.AddDays(objCurrentReader.AllowDay),
                             BorrowCount = 1
                         };
                         borrowsDetailList.Add(bookDetail);
@@ -161,7 +161,7 @@ namespace LibraryManagerPro
 
             BorrowInfo main = new BorrowInfo()
             {
-                ReaderId = this.objCurrentRearer.ReaderId,
+                ReaderId = this.objCurrentReader.ReaderId,
                 BorrowId = DateTime.Now.ToString("yyyyMMddhhmmssms"),
                 AdminName_B = Program.objCurrentAdmin.AdminName
             };
@@ -169,7 +169,7 @@ namespace LibraryManagerPro
             for (int i = 0; i < this.borrowsDetailList.Count; i++)
             {
                 borrowsDetailList[i].BorrowId = main.BorrowId;
-                borrowsDetailList[i].Expire = DateTime.Now.AddDays(objCurrentRearer.AllowDay);
+                borrowsDetailList[i].Expire = DateTime.Now.AddDays(objCurrentReader.AllowDay);
                 borrowsDetailList[i].NonReturnCount = borrowsDetailList[i].BorrowCount;
             }
 
@@ -189,7 +189,7 @@ namespace LibraryManagerPro
                 this.pbReaderImage.Image = null;
                 this.dgvBookList.DataSource = null;
                 this.txtReadingCard.Clear();
-                this.objCurrentRearer = null;
+                this.objCurrentReader = null;
 
                 MessageBox.Show("借书成功！", "借书提示");
                 this.txtReadingCard.Focus();

@@ -341,7 +341,7 @@
             this.txtReadingCard.Name = "txtReadingCard";
             this.txtReadingCard.Size = new System.Drawing.Size(142, 21);
             this.txtReadingCard.TabIndex = 0;
-
+            this.txtReadingCard.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtReadingCard_KeyDown);
             // 
             // lblAllowCounts
             // 

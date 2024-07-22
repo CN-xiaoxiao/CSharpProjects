@@ -12,5 +12,10 @@ namespace LibraryManagerModels
     [Serializable]
     public class ReturnBook
     {
+        public int ReturnId { get; set; }
+        public int BorrowDetailId {  get; set; }
+        public int ReturnCount { get; set; }
+        public string AdminName_R {  get; set; }
+        public string BookName {  get; set; }
     }
 }
