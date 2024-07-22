@@ -47,6 +47,7 @@
             this.btnCancel.TabIndex = 12;
             this.btnCancel.Text = "取 消";
             this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // btnModify
             // 
@@ -56,6 +57,7 @@
             this.btnModify.TabIndex = 11;
             this.btnModify.Text = "确认修改";
             this.btnModify.UseVisualStyleBackColor = true;
+            this.btnModify.Click += new System.EventHandler(this.btnModify_Click);
             // 
             // txtNewPwdConfirm
             // 

@@ -17,5 +17,10 @@ namespace LibraryManagerBLL
         {
             return objSysAdminService.AdminLogin(objAdmin);
         }
+
+        public int ModifyPwd(string adminId, string newPwd)
+        {
+            return objSysAdminService.ModifyPwd(adminId, newPwd);
+        }
     }
 }

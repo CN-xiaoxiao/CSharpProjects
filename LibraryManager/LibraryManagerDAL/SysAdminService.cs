@@ -53,5 +53,23 @@ namespace LibraryManagerDAL
 
             return objAdmin;
         }
+
+        /// <summary>
+        /// 修改管理员密码
+        /// </summary>
+        /// <param name="adminId"></param>
+        /// <param name="newPwd"></param>
+        /// <returns></returns>
+        public int ModifyPwd(string adminId, string newPwd)
+        {
+            string sql = "update SysAdmins set LoginPwd=@LoginPwd where AdminId=@AdminId";
+            SqlParameter[] param = new SqlParameter[]
+            {
+                new SqlParameter ("@AdminId", adminId),
+                new SqlParameter ("@LoginPwd", newPwd)
+            };
+
+            return SQLHelper.Update(sql, param);
+        }
     }
 }
